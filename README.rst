@@ -16,7 +16,7 @@ Requires :code:`sudo apt-get install python3 python3-pip libleveldb-dev cmake`
 
 If you would like a guide on how to set up an Frencoin Electrumx server
 for personal use or to add to the wider network, please read
-HyperPeek#9099's document `Setting Up an Frencoin Electrumx Server <https://github.com/Apushii/electrumx/blob/master/ElectrumX%20Frencoin%20How-To.md/>`_.
+HyperPeek#9099's document `Setting Up an Frencoin Electrumx Server <https://github.com/Apushii/electrumx-frencoin/blob/master/ElectrumX%20Frencoin%20How-To.md/>`_.
 
 See `readthedocs <https://electrumx-ravencoin.readthedocs.io/>`_.
 
