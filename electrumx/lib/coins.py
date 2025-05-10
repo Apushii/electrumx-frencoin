@@ -219,33 +219,32 @@ class Coin:
         return Decimal(value) / cls.VALUE_PER_COIN
 
 
-class Ravencoin(Coin):
-    NAME = "Ravencoin"
-    SHORTNAME = "RVN"
+class Frencoin(Coin):
+    NAME = "Frencoin"
+    SHORTNAME = "FREN"
     NET = "mainnet"
     XPUB_VERBYTES = bytes.fromhex("0488B21E")
     XPRV_VERBYTES = bytes.fromhex("0488ADE4")
-    P2PKH_VERBYTE = bytes.fromhex("3C")
-    P2SH_VERBYTES = [bytes.fromhex("7A")]
-    GENESIS_HASH = ('0000006b444bc2f2ffe627be9d9e7e7a'
-                    '0730000870ef6eb6da46c8eae389df90')
+    P2PKH_VERBYTE = bytes.fromhex("23")
+    P2SH_VERBYTES = [bytes.fromhex("5F")]
+    GENESIS_HASH = ('00000022bcd010da6b8d3c2c0e80229e'
+                    'a1f5c0bb4960678d3c26bab2c9b23b9a')
     DEFAULT_MAX_SEND = 10_000_000
-    X16RV2_ACTIVATION_TIME = 1569945600   # algo switch to x16rv2 at this timestamp
-    KAWPOW_ACTIVATION_TIME = 1588788000  # kawpow algo activation time
-    KAWPOW_ACTIVATION_HEIGHT = 1219736
+    X16RV2_ACTIVATION_TIME = 0   # algo switch to x16rv2 at this timestamp
+    KAWPOW_ACTIVATION_TIME = 1683401242  # kawpow algo activation time
+    KAWPOW_ACTIVATION_HEIGHT = 1
     KAWPOW_HEADER_SIZE = 120
     
-    CHAIN_SIZE = 29_655_304_862
-    CHAIN_SIZE_HEIGHT = 2_873_312
-    AVG_BLOCK_SIZE = 12_681
+    CHAIN_SIZE = 816_670_500
+    CHAIN_SIZE_HEIGHT = 1_662_032
+    AVG_BLOCK_SIZE = 10_000
     
-    RPC_PORT = 8766
+    RPC_PORT = 4206
     REORG_LIMIT = 60
     PEERS = [
-        'rvn4lyfe.com t s',
-        '162.19.153.65 t s',
-        'electrum-rvn.moontree.com s',
-        'aq7vuqykup2voklcrpqljf6jnjkzrouowsjfrmybdou5kdhrpr6sjjid.onion t s',
+        '35.208.59.201 t s',
+        'electrum.frencoin.org t s',
+        'electrum.frencoin.net t s',
     ]
 
     @classmethod
@@ -253,7 +252,7 @@ class Ravencoin(Coin):
         '''Given a header height return its offset in the headers file.'''
         if cls.KAWPOW_ACTIVATION_HEIGHT < 0 or height < cls.KAWPOW_ACTIVATION_HEIGHT:
             return height * cls.BASIC_HEADER_SIZE
-        else:  # RVN block header size increased with kawpow fork
+        else:  # FREN block header size increased with kawpow fork
             return (cls.KAWPOW_ACTIVATION_HEIGHT * cls.BASIC_HEADER_SIZE) + ((height - cls.KAWPOW_ACTIVATION_HEIGHT) * cls.KAWPOW_HEADER_SIZE)
 
     @classmethod
@@ -270,7 +269,7 @@ class Ravencoin(Coin):
         else:
             return x16r_hash.getPoWHash(header)
 
-class RavencoinTestnet(Ravencoin):
+class FrencoinTestnet(Frencoin):
     NET = "testnet"
     XPUB_VERBYTES = bytes.fromhex("043587CF")
     XPRV_VERBYTES = bytes.fromhex("04358394")
@@ -289,5 +288,5 @@ class RavencoinTestnet(Ravencoin):
 
     RPC_PORT = 18766
     PEERS = [
-        "rvn4lyfe.com t50011 s50012",
+        "fren4lyfe.com t50011 s50012",
     ]

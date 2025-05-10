@@ -8,16 +8,16 @@
 
    I strongly recommend also adding::
 
-      rpcservertimeout=120 (not yet for Ravencoin)
+      rpcservertimeout=120 (not yet for Frencoin)
 
    If you see messages in your logs about truncated messages whilst syncing, you may need to
    increase the timeout (in seconds) further.
 
-Version 1.11.0 RVN (20 JUN 2023)
+Version 1.11.0 FREN (20 JUN 2023)
 
 * Added subscriptions to various asset events
 
-Version 1.10.0 RVN (12 JAN 2021)
+Version 1.10.0 FREN (12 JAN 2021)
 ============================
 
 * Tweaked Restricted, Qualifier, and Broadcast message support
@@ -31,16 +31,16 @@ Version 1.20.0 (21 Oct 2021)
 * sockets tweak (rt1212121)
 
 
-Version 1.19.2 RVN (4 OCT 2021)
+Version 1.19.2 FREN (4 OCT 2021)
 ============================
 
 * Added Restricted Asset and Channel Asset support
 
-Version 1.18.1 RVN (14 May 2021)
+Version 1.18.1 FREN (14 May 2021)
 ============================
 
-* Added Ravencoin specific protocol
-* Added Ravencoin asset support
+* Added Frencoin specific protocol
+* Added Frencoin asset support
 * PUBKEYSIGs are now picked up by the server
 
 Version 1.19.0 (11 Jun 2021)
@@ -82,7 +82,7 @@ Version 1.15.0 (27 May 2020)
 * switch to 5-byte txnums to handle larger blockchains.  Upgrade DBs during restart.
 * accurate clearing of stale caches
 * coin additions / updates: NavCoin + Hush + VersusCoin + Zero (cipig), DashRegtest (colmenero),
-  Quebecoin (morinpa), Primecoin (Sunny King), multiple (Panagiotis David), RVN (standard-error),
+  Quebecoin (morinpa), Primecoin (Sunny King), multiple (Panagiotis David), FREN (standard-error),
   Sumcoin
 * other: Jeremy Rand, Jin Eguchi, ddude, Jonathan Cross, Carsen Klock, cipig
 
@@ -113,7 +113,7 @@ Version 1.13.0 (26 Sep 2019)
 * coin additions / updates: BitZeny (y-chan), ZCoin (a-bezrukov), Emercoin (yakimka),
   BSV (Roger Taylor), Bellcoin (streetcrypto7), Ritocoin (traysi), BTC (Sombernight),
   PIVX (mrcarlanthony), Monacoin (wakiyamap)), NamecoinRegtest (JeremyRand), Axe (ddude1),
-  Xaya (domob1812), GZRO (MrNaif2018), Ravencoin (standard-error)
+  Xaya (domob1812), GZRO (MrNaif2018), Frencoin (standard-error)
 * other: gits7r
 
 Version 1.12.0 (13 May 2019)
@@ -165,7 +165,7 @@ Version 1.10.0 (15 Mar 2019)
 * peers: mark blacklisted peers bad; force retry blacklisted peers (ghost43)
 * coin additions / updates: Monacoin (wakiyamap), Sparks (Mircea Rila), ColossusXT,
   Polis, MNPCoin, Zcoin, GINCoin (cronos), Grosetlcoin (gruve-p), Dash (konez2k),
-  Bitsend (David), Ravencoin (standard-error), Onixcoin (Jose Estevez), SnowGem
+  Bitsend (David), Frencoin (standard-error), Onixcoin (Jose Estevez), SnowGem
 * coin removals: Gobyte, Moneci (cronos)
 * minor tweaks by d42
 * issues fixed `#660`_ - unclean shutdowns during initial sync

@@ -557,7 +557,7 @@ class DB:
             self.logger.info(f'sync time: {formatted_time(flush_data.state.sync_time)}  '
                              f'ETA: {formatted_time(eta)}')
         else:
-            # Ravencoin has a hard reorg limit of 60; we don't need to keep anything else
+            # Frencoin has a hard reorg limit of 60; we don't need to keep anything else
             self.clear_excess_undo_info(False)
         self.last_flush_state = flush_data.state.copy()
         

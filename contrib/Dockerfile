@@ -1,4 +1,4 @@
-# example of Dockerfile that builds release of electrumx-ravencoin-1.11.0
+# example of Dockerfile that builds release of electrumx-frencoin-1.11.0
 # ENV variables can be overrided on the `docker run` command
 
 FROM debian:bookworm-slim
@@ -24,19 +24,19 @@ RUN python3 -m pip install --upgrade pip
 
 ARG VERSION=1.12.1
 
-ADD --chown=electrumx https://github.com/Electrum-RVN-SIG/electrumx-ravencoin/archive/v${VERSION}.tar.gz .
+ADD --chown=electrumx https://github.com/Electrum-FREN-SIG/electrumx-frencoin/archive/v${VERSION}.tar.gz .
 RUN tar zxvf *.tar.gz
 RUN rm *.tar.gz
 
-WORKDIR /home/electrumx/electrumx-ravencoin-${VERSION}
+WORKDIR /home/electrumx/electrumx-frencoin-${VERSION}
 RUN python3 -m pip install -r requirements.txt
 RUN python3 setup.py install
 WORKDIR /home/electrumx
 
-RUN rm -r electrumx-ravencoin-${VERSION}
+RUN rm -r electrumx-frencoin-${VERSION}
 
 ENV SERVICES="ssl://:50002,tcp://:50001,rpc://:8000"
-ENV COIN=Ravencoin
+ENV COIN=Frencoin
 ENV DB_DIRECTORY=/db
 ENV DAEMON_URL="http://username:password@hostname:port/"
 ENV ALLOW_ROOT=true
@@ -49,10 +49,10 @@ ENV SSL_CERTFILE="${DB_DIRECTORY}/ssl_cert/server.crt"
 ENV SSL_KEYFILE="${DB_DIRECTORY}/ssl_cert/server.key"
 
 # !!README!!
-# REQUIRED to connect with the larger electrumx ravencoin server network.
+# REQUIRED to connect with the larger electrumx frencoin server network.
 # Full service://(IP/URL):PORT is REQUIRED
 # Example:
-# env REPORT_SERVICES = ssl://rvn4lyfe.com:50002,tcp://rvn4lyfe.com:50001
+# env REPORT_SERVICES = ssl://fren4lyfe.com:50002,tcp://fren4lyfe.com:50001
 
 EXPOSE 8000
 EXPOSE 50001
@@ -72,7 +72,7 @@ CMD if [ -d "$DB_DIRECTORY/ssl_cert/" ]; then \
         openssl x509 -req -days 1825 -in server.csr -signkey server.key -out server.crt; \
     fi && electrumx_server
 
-# build it with eg.: `docker build -t electrumx-ravencoin .`
+# build it with eg.: `docker build -t electrumx-frencoin .`
 # run it with eg.:
-# `docker run -d --net=host -v /home/electrumx/db/:/db -e DAEMON_URL="http://youruser:yourpass@localhost:8766" -e REPORT_SERVICES=tcp://example.com:50001 electrumx-ravencoin`
+# `docker run -d --net=host -v /home/electrumx/db/:/db -e DAEMON_URL="http://youruser:yourpass@localhost:8766" -e REPORT_SERVICES=tcp://example.com:50001 electrumx-frencoin`
 # for a proper clean shutdown, send TERM signal to the running container eg.: `docker kill --signal="TERM" CONTAINER_ID`

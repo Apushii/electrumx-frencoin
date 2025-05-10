@@ -66,11 +66,11 @@ class OPPushDataGeneric:
 
 
 # Marks an address as valid for restricted assets via qualifier or restricted itself.
-ASSET_NULL_TEMPLATE = [OpCodes.OP_RVN_ASSET, OPPushDataGeneric(lambda x: x == 20), OPPushDataGeneric()]
+ASSET_NULL_TEMPLATE = [OpCodes.OP_FREN_ASSET, OPPushDataGeneric(lambda x: x == 20), OPPushDataGeneric()]
 # Used with creating restricted assets. Dictates the qualifier assets associated.
-ASSET_NULL_VERIFIER_TEMPLATE = [OpCodes.OP_RVN_ASSET, OpCodes.OP_RESERVED, OPPushDataGeneric()]
+ASSET_NULL_VERIFIER_TEMPLATE = [OpCodes.OP_FREN_ASSET, OpCodes.OP_RESERVED, OPPushDataGeneric()]
 # Stop all movements of a restricted asset.
-ASSET_GLOBAL_RESTRICTION_TEMPLATE = [OpCodes.OP_RVN_ASSET, OpCodes.OP_RESERVED, OpCodes.OP_RESERVED,
+ASSET_GLOBAL_RESTRICTION_TEMPLATE = [OpCodes.OP_FREN_ASSET, OpCodes.OP_RESERVED, OpCodes.OP_RESERVED,
                                      OPPushDataGeneric()]
 
 
@@ -852,7 +852,7 @@ class BlockProcessor:
                     op_ptr = -1
                     for i in range(len(ops)):
                         op = ops[i][0]  # The OpCode
-                        if op == OpCodes.OP_RVN_ASSET:
+                        if op == OpCodes.OP_FREN_ASSET:
                             op_ptr = i
                             break
                         if op == -1:
@@ -860,7 +860,7 @@ class BlockProcessor:
                             break
 
                     if invalid_script:
-                        # This script could not be parsed properly before any OP_RVN_ASSETs.
+                        # This script could not be parsed properly before any OP_FREN_ASSETs.
                         # Hash as-is for possible spends and continue.
                         hashX = script_hashX(txout.pk_script)
                         append_hashX(hashX)
@@ -964,20 +964,20 @@ class BlockProcessor:
                         continue
 
                     if op_ptr > 0:
-                        # This script has OP_RVN_ASSET. Use everything before this for the script hash.
+                        # This script has OP_FREN_ASSET. Use everything before this for the script hash.
                         # Get the raw script bytes ending ptr from the previous opcode.
                         script_hash_end = ops[op_ptr - 1][1]
                         hashX = script_hashX(txout.pk_script[:script_hash_end])
                     else:
-                        # There is no OP_RVN_ASSET. Hash as-is.
+                        # There is no OP_FREN_ASSET. Hash as-is.
                         hashX = script_hashX(txout.pk_script)
 
                     # Now try and add asset info
                     def try_parse_asset(asset_deserializer: DataParser, second_loop=False):
                         nonlocal current_restricted_asset, restricted_idx
                         op = asset_deserializer.read_bytes(3)
-                        if op != b'rvn':
-                            raise Exception("Expected {}, was {}".format(b'rvn', op))
+                        if op != b'fren':
+                            raise Exception("Expected {}, was {}".format(b'fren', op))
                         script_type = asset_deserializer.read_byte()
                         asset_name_len, asset_name = asset_deserializer.read_var_bytes_tuple_bytes()
                         idx_b = to_le_uint32(idx)
@@ -1142,16 +1142,16 @@ class BlockProcessor:
 
                     # function for malformed asset
                     def try_parse_asset_iterative(script: bytes):
-                        while script[:3] != b'rvn' and len(script) > 0:
+                        while script[:3] != b'fren' and len(script) > 0:
                             script = script[1:]
-                        assert script[:3] == b'rvn'
+                        assert script[:3] == b'fren'
                         return try_parse_asset(DataParser(script), True)
 
                     # Me @ core devs
                     # https://www.youtube.com/watch?v=iZlpsneDGBQ
 
                     if 0 < op_ptr < len(ops):
-                        assert ops[op_ptr][0] == OpCodes.OP_RVN_ASSET  # Sanity check
+                        assert ops[op_ptr][0] == OpCodes.OP_FREN_ASSET  # Sanity check
                         try:
                             next_op = ops[op_ptr + 1]
                             if next_op[0] == -1:

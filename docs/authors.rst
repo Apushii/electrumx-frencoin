@@ -17,4 +17,4 @@ Authors
 
 * kralverde
 
-  Ravencoin conversion
+  Frencoin conversion

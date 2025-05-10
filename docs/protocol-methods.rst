@@ -511,7 +511,7 @@ Returns a list of restricted assets of who's qualifing string contains the quali
 blockchain.asset.list_addresses_by_asset
 ========================================
 
-An **optional** method. Requires --assetindex=1 in ravend. Returns an error if unavaliable. Returns a dictionary with information about what address(es) hold an asset.
+An **optional** method. Requires --assetindex=1 in frend. Returns an error if unavaliable. Returns a dictionary with information about what address(es) hold an asset.
 
 **Signature**
 
@@ -1030,9 +1030,9 @@ Return the confirmed and unconfirmed balances of a :ref:`script hash
 
   *asset*
 
-    An optional value that can be: :const:`False` to return only the Ravencoin balance, :const:`True` to 
+    An optional value that can be: :const:`False` to return only the Frencoin balance, :const:`True` to 
     return all balances, an asset name to return the balance for the asset, or a list of assets to return
-    the balances for those assets (a value of null indicates Ravencoin outputs).
+    the balances for those assets (a value of null indicates Frencoin outputs).
 
 **Result**
 
@@ -1040,8 +1040,8 @@ Return the confirmed and unconfirmed balances of a :ref:`script hash
   each is the appropriate balance in minimum coin units (satoshis).
 
   If more than one set of balances is to be returned, the result will
-  be a dictionary of asset names whose value is the above. Ravencoin values
-  will be denoted as "rvn".
+  be a dictionary of asset names whose value is the above. Frencoin values
+  will be denoted as "fren".
 
 **Result Example**
 
@@ -1055,7 +1055,7 @@ Return the confirmed and unconfirmed balances of a :ref:`script hash
 ::
 
   {
-    "rvn": {
+    "fren": {
       "confirmed": 103873966,
       "unconfirmed": 23684400
     },
@@ -1184,9 +1184,9 @@ Return an ordered list of UTXOs sent to a script hash.
 
   *asset*
 
-    An optional value that can be: :const:`False` to return only Ravencoin outputs, :const:`True` to 
+    An optional value that can be: :const:`False` to return only Frencoin outputs, :const:`True` to 
     return all utxos, an asset name to return outputs for the asset, or a list of assets to return
-    outputs for those assets (a value of null indicates Ravencoin outputs).
+    outputs for those assets (a value of null indicates Frencoin outputs).
 
 **Result**
 

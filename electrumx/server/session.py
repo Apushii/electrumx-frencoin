@@ -1476,7 +1476,7 @@ class ElectrumX(SessionBase):
         self.bump_cost(1.0 + len(utxos) / 50)
         include_names = asset is True or (asset is not False and not isinstance(asset, str))
         if include_names:
-            return {(k or 'rvn'): {'confirmed': confirmed[k], 'unconfirmed': unconfirmed[k]} for k in set(confirmed.keys()).union(unconfirmed.keys()).union(must_have_names)}
+            return {(k or 'fren'): {'confirmed': confirmed[k], 'unconfirmed': unconfirmed[k]} for k in set(confirmed.keys()).union(unconfirmed.keys()).union(must_have_names)}
         else:
             confirmed = 0 if len(confirmed) == 0 else confirmed[list(confirmed.keys())[0]]
             unconfirmed = 0 if len(unconfirmed) == 0 else unconfirmed[list(unconfirmed.keys())[0]]
