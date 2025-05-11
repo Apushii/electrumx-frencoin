@@ -97,6 +97,8 @@ It is assumed that you have basic knowledge of editing files on Linux (vi, vim, 
 
 **mkdir electrumx\_db** 
 
+**cd electrumx** 
+
 **mkdir ssl\_cert** 
 
 **cd ssl\_cert** 
